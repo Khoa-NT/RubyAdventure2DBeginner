@@ -3,7 +3,9 @@ Project from Unity Learn: [Ruby's Adventure: 2D Beginner](https://learn.unity.co
 
 
 
-https://user-images.githubusercontent.com/12138158/131356957-7bba240a-c704-43de-a012-f241dd04fcc2.mov
+
+https://user-images.githubusercontent.com/12138158/131358581-e9bd370e-7119-493c-9bfb-8174b0841a11.mp4
+
 
 
 
