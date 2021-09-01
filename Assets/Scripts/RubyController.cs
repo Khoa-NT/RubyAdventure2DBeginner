@@ -33,6 +33,13 @@ public class RubyController : MonoBehaviour
     Animator animator;
     Vector2 lookDirection = new Vector2(1,0);
 
+    
+    // ----------------------------- For Audio -----------------------------
+    AudioSource audioSource;
+    public AudioClip throwClip;
+    public AudioClip hitClip;
+    public AudioClip FootStepClip;
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +55,8 @@ public class RubyController : MonoBehaviour
         // currentHealth = 1;
 
         animator = GetComponent<Animator>();
+
+        audioSource = GetComponent<AudioSource>();
 
 
     }
@@ -105,6 +114,17 @@ public class RubyController : MonoBehaviour
         {
             lookDirection.Set(move.x, move.y);
             lookDirection.Normalize();
+
+
+            if (!audioSource.isPlaying)
+            {
+                PlaySound(FootStepClip);
+            }
+
+        }
+        else
+        {
+            audioSource.Stop();
         }
         
         animator.SetFloat("Look X", lookDirection.x);
@@ -181,6 +201,8 @@ public class RubyController : MonoBehaviour
             
             isInvincible = true;
             invincibleTimer = timeInvincible;
+
+            PlaySound(hitClip);
         }
 
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
@@ -206,6 +228,16 @@ public class RubyController : MonoBehaviour
         
         // Trigger Ruby to Launch animation
         animator.SetTrigger("Launch");
+        
+        PlaySound(throwClip);
+
+    }
+
+
+
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 
 
